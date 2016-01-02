@@ -1,0 +1,12 @@
+.vagrant
+
+.project
+bin/
+.metadata
+.classpath
+.target
+
+*iml
+.idea/
+.gradle/
+build/
