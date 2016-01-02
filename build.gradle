@@ -36,9 +36,17 @@ dependencies {
     compile 'org.springframework.data:spring-data-rest-hal-browser'
     compile 'org.springframework.boot:spring-boot-starter'
     runtime 'mysql:mysql-connector-java'
-    testCompile "junit:junit:4.11"
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
+}
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
 }
