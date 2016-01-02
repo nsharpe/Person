@@ -22,7 +22,7 @@ To log into the mysql server run
 mysql -u root -h 192.168.60.2
 ```
 
-To start up the person service run the following
+To build and run the person service run the following
 ```
 ./gradlew build && java -jar build/libs/person-service-0.1.0.jar
 ```
