@@ -16,15 +16,6 @@ import java.util.stream.Stream;
 @SpringBootApplication
 public class PersonApplication {
   public static void main(String args[]){
-
     ApplicationContext ctx = SpringApplication.run(PersonApplication.class, args);
-
-    DataSource ds = (DataSource) ctx.getBean("dataSource");
-
-    String[] beanNames = ctx.getBeanDefinitionNames();
-    Arrays.sort(beanNames);
-    for (String beanName : beanNames) {
-      System.out.println(beanName);
-    }
   }
 }
