@@ -14,23 +14,23 @@ import java.util.UUID;
  * Created by neilsharpe on 1/1/16.
  */
 @Entity
-@Table(name="Person")
-public class Person implements Unique<UUID> {
+@Table(name="person")
+public class Person implements Unique<Long> {
 
   @Id
   @GeneratedValue
-  private UUID id;
+  private Long id;
   @Column(nullable = false)
   private String firstName;
   @Column(nullable = false)
   private String lastName;
 
   @Override
-  public UUID getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

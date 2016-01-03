@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Created by neilsharpe on 1/1/16.
@@ -14,7 +16,10 @@ import java.util.Arrays;
 @SpringBootApplication
 public class PersonApplication {
   public static void main(String args[]){
+
     ApplicationContext ctx = SpringApplication.run(PersonApplication.class, args);
+
+    DataSource ds = (DataSource) ctx.getBean("dataSource");
 
     String[] beanNames = ctx.getBeanDefinitionNames();
     Arrays.sort(beanNames);
