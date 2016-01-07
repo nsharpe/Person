@@ -24,5 +24,57 @@ mysql -u root -h 192.168.60.2
 
 To build and run the person service run the following
 ```
-./gradlew build && java -jar build/libs/person-service-0.1.0.jar
+gradle run
 ```
+
+## Accessing the Rest Service
+
+From running from your local machine the rest base will be ``` localhost:8008/person  ```
+
+You can post to this location with the following header
+```
+"Content-Type" : "application/json"
+{
+  "firstName": "Joe",
+  "lastName": "Smith",
+  "birthDate": [
+    1985,
+    1,
+    31
+  ],
+  "weightInPounds": 160,
+  "height": {
+    "feet": 5,
+    "inches": 11
+  }
+}
+```
+
+It will return with the created person
+```
+"Content-Type" : "application/json"
+{
+  "id":1
+  "firstName": "Joe",
+  "lastName": "Smith",
+  "birthDate": [
+    1985,
+    1,
+    31
+  ],
+  "weightInPounds": 160,
+  "height": {
+    "feet": 5,
+    "inches": 11
+  }
+}
+```
+
+You can get the person by performing a get at the following location
+```
+localhost:8008/person/1
+```
+
+Performing a delete on the previous location will remove it from the date base.
+
+You can update a person by using a put method.

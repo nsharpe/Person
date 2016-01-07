@@ -2,7 +2,6 @@ package org.neil.person.model;
 
 import org.neil.person.ImperialDistance;
 import org.neil.util.Unique;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +24,7 @@ public class Person implements Unique<Long> {
 
   @Id
   @GeneratedValue
+  @Column(updatable = false)
   private Long id;
 
   @Column(nullable = false)
@@ -33,9 +33,8 @@ public class Person implements Unique<Long> {
   @Column(nullable = false)
   private String lastName;
 
-//  @Column(nullable = false)
-//  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-//  private LocalDate birthDate;
+  @Column(nullable = false)
+  private LocalDate birthDate;
 
   @Column(nullable = false)
   private BigDecimal weightInPounds;
@@ -68,13 +67,13 @@ public class Person implements Unique<Long> {
     this.lastName = lastName;
   }
 
-//  public LocalDate getBirthDate() {
-//    return birthDate;
-//  }
-//
-//  public void setBirthDate(LocalDate birthDate) {
-//    this.birthDate = birthDate;
-//  }
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
+
+  public void setBirthDate(LocalDate birthDate) {
+    this.birthDate = birthDate;
+  }
 
   public BigDecimal getWeightInPounds() {
     return weightInPounds;

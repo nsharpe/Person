@@ -1,10 +1,7 @@
 package org.neil.person;
 
-import org.neil.convertors.LocalDateConvertor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * This is the bootstrap for the Person webservice.  The
@@ -16,11 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by neilsharpe on 1/1/16.
  */
 @SpringBootApplication
-public class PersonApplication extends WebMvcConfigurerAdapter {
-  @Override
-  public void addFormatters(FormatterRegistry registry) {
-    registry.addConverter(new LocalDateConvertor("yyyy-MM-dd"));
-  }
+public class PersonApplication {
 
   public static void main(String args[]){
     //This starts the rest service
