@@ -1,21 +1,29 @@
 package org.neil.person;
 
+import org.neil.convertors.LocalDateConvertor;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-
-import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.stream.Stream;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
+ * This is the bootstrap for the Person webservice.  The
+ * {@link SpringBootApplication} annotation assignees beans automaticaly for all
+ * items contained in the package org.neil.person
+ *
+ * It also updates properties accordingly.
+ *
  * Created by neilsharpe on 1/1/16.
  */
 @SpringBootApplication
-public class PersonApplication {
+public class PersonApplication extends WebMvcConfigurerAdapter {
+  @Override
+  public void addFormatters(FormatterRegistry registry) {
+    registry.addConverter(new LocalDateConvertor("yyyy-MM-dd"));
+  }
+
   public static void main(String args[]){
-    ApplicationContext ctx = SpringApplication.run(PersonApplication.class, args);
+    //This starts the rest service
+    SpringApplication.run(PersonApplication.class, args);
   }
 }

@@ -17,6 +17,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'application'
+mainClassName="org.neil.person.PersonApplication"
 
 jar {
     baseName = 'person-service'
@@ -38,6 +40,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
     runtime 'mysql:mysql-connector-java'
     testCompile 'junit:junit:4.11'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 

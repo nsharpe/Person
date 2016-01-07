@@ -6,6 +6,9 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * Allows the database to correctly convert the {@link java.time.LocalDate} object
+ */
 @Converter(autoApply = true)
 public class LocalDateConvertor implements AttributeConverter<LocalDate, Date> {
 
