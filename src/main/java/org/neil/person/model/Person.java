@@ -5,6 +5,8 @@ import org.neil.util.Unique;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -41,6 +43,10 @@ public class Person implements Unique<Long> {
 
   @Column(nullable = false)
   private ImperialDistance height;
+
+  @Column(nullable=false)
+  @Enumerated(EnumType.STRING)
+  private Gender gender;
 
   @Override
   public Long getId() {
@@ -89,6 +95,18 @@ public class Person implements Unique<Long> {
 
   public void setHeight(ImperialDistance height) {
     this.height = height;
+  }
+
+  public Gender getGender() {
+    return gender;
+  }
+
+  public void setGender(Gender gender) {
+    this.gender = gender;
+  }
+
+  public enum Gender{
+    MALE,FEMALE
   }
 
   @Override

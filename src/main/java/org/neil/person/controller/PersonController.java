@@ -2,6 +2,7 @@ package org.neil.person.controller;
 
 import org.neil.person.datasource.PersonRepository;
 import org.neil.person.model.Person;
+import org.neil.person.service.RandomPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
   private PersonRepository personRepository;
+  private RandomPersonService randomPersonService = new RandomPersonService();
 
   @Autowired
   public PersonController(PersonRepository personRepository) {
@@ -26,6 +28,11 @@ public class PersonController {
   @RequestMapping(value="/", method = RequestMethod.GET)
   public String index() {
     return "Welcome to the Person Service";
+  }
+
+  @RequestMapping(value="/randomize",method = RequestMethod.POST)
+  public Person createRandomPerson(){
+    return personRepository.save(randomPersonService.generate());
   }
 
   @RequestMapping(value="/{id}", method = RequestMethod.GET)
