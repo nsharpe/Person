@@ -1,16 +1,10 @@
 package org.neil.util;
 
-import java.util.function.Predicate;
-
 /**
- * Created by neilsharpe on 1/1/16.
+ * Denotes that a class has a uniqueness constraint.
+ *
  */
 public interface Unique<I> {
 
   I getId();
-
-  default Predicate<Unique<I>> idMatches(){
-    return x -> x.getId().equals(getId());
-  }
-
 }
