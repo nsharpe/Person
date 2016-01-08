@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -40,6 +41,7 @@ public class RandomPersonService {
           "Martin","Moore","White","Jackson","Taylor","Lee","Harris", "Clark",
           "Robinson","Young","King","Scott","Green","Baker","Hill","Edwards"
   ).distinct().collect(Collectors.toList());;
+
   public Person generate(){
     Person toReturn = new Person();
 
@@ -50,6 +52,10 @@ public class RandomPersonService {
     toReturn.setHeight(ImperialDistance.of(random.nextInt(3) + 4,random.nextInt(12)));
     toReturn.setWeightInPounds(BigDecimal.valueOf(100 + ( random.nextDouble() * 150)));
     return toReturn;
+  }
+
+  public Stream<Person> generate(Integer count){
+    return IntStream.range(0,count).mapToObj(x->generate());
   }
 
   public LocalDate generateBirthDate(){

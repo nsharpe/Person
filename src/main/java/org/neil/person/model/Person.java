@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * This object represents a person and will be used by both the webservice and
@@ -107,6 +109,33 @@ public class Person implements Unique<Long> {
 
   public enum Gender{
     MALE,FEMALE
+  }
+
+  /**
+   * This collection of predicates is intended to make operations appear more
+   * human readable.
+   *
+   * @param localDate
+   * @return
+   */
+  public static Predicate<Person> isOlderThan(final LocalDate localDate){
+    return x -> x.getBirthDate().isBefore(localDate);
+  }
+
+  public static Predicate<Person> isOlderThanOrEqual(final LocalDate localDate){
+    return isOlderThan(localDate).or( x -> x.getBirthDate().isEqual(localDate));
+  }
+
+  public static Predicate<Person> isYoungerThan(final LocalDate localDate){
+    return x -> x.getBirthDate().isAfter(localDate);
+  }
+
+  public static Predicate<Person> isAnAdult(){
+    return isOlderThanOrEqual(LocalDate.now().minus(18, ChronoUnit.YEARS));
+  }
+
+  public static Predicate<Person> weighsMoreThan(BigDecimal weightInPounds){
+    return x -> x.getWeightInPounds().compareTo(weightInPounds) > 0;
   }
 
   @Override
