@@ -44,12 +44,18 @@ public class PersonController {
     return personService.save(randomPersonService.generate());
   }
 
+  @RequestMapping(value="/randomize/{count}",method = RequestMethod.POST)
+  public List<Person> createRandomPerson(@PathVariable Long count){
+    return personService.save(randomPersonService.generate(count))
+            .collect(Collectors.toList());
+  }
+
   @RequestMapping(value="/{id}", method = RequestMethod.GET)
   public Person getPerson(@PathVariable Long id){
     return personService.findOne(id);
   }
 
-  @RequestMapping( method = RequestMethod.GET)
+  @RequestMapping( method = RequestMethod.GET, params = "id")
   public List<Person> getPersons(@RequestParam("id") Collection<Long> ids){
     return personService.findPersons(ids).collect(Collectors.toList());
   }
@@ -67,5 +73,11 @@ public class PersonController {
   @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
   public void deletePerson(@PathVariable Long id){
     personService.delete(id);
+  }
+
+  @RequestMapping(method = RequestMethod.GET,params = "isAdult")
+  public List<Person> adultFilter(@RequestParam("isAdult") Boolean isAdult){
+    return personService.findAllFilteredByAdults(isAdult)
+            .collect(Collectors.toList());
   }
 }

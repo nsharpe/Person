@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
@@ -55,7 +56,12 @@ public class RandomPersonService {
   }
 
   public Stream<Person> generate(Integer count){
-    return IntStream.range(0,count).mapToObj(x->generate());
+    return generate(count.longValue());
+  }
+
+  public Stream<Person> generate(Long count)
+  {
+    return LongStream.range(0,count).mapToObj(x->generate());
   }
 
   public LocalDate generateBirthDate(){
