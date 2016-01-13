@@ -1,6 +1,7 @@
 package org.neil.person.controller;
 
 import org.neil.person.model.Person;
+import org.neil.person.model.PersonStatistics;
 import org.neil.person.service.PersonService;
 import org.neil.person.service.RandomPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by neilsharpe on 1/1/16.
@@ -79,5 +79,10 @@ public class PersonController {
   public List<Person> adultFilter(@RequestParam("isAdult") Boolean isAdult){
     return personService.findAllFilteredByAdults(isAdult)
             .collect(Collectors.toList());
+  }
+
+  @RequestMapping(value = "/statistics",method = RequestMethod.GET)
+  public PersonStatistics getStatistics(){
+    return new PersonStatistics(personService.findAll());
   }
 }
