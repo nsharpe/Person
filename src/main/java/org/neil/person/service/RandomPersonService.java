@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -41,7 +42,17 @@ public class RandomPersonService {
           "Alderan", "O'Connel", "Williams", "Brown","Jones","Miller","Garcia",
           "Martin","Moore","White","Jackson","Taylor","Lee","Harris", "Clark",
           "Robinson","Young","King","Scott","Green","Baker","Hill","Edwards"
-  ).distinct().collect(Collectors.toList());;
+  ).distinct().collect(Collectors.toList());
+
+  /**
+   * The supplier is a functional implementation that will create a new person
+   * each time get is called.
+   *
+   * @return
+   */
+  public Supplier<Person> personSupplier(){
+    return () -> generate();
+  }
 
   public Person generate(){
     Person toReturn = new Person();
