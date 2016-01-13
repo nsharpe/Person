@@ -51,7 +51,7 @@ public class RandomPersonService {
    * @return
    */
   public Supplier<Person> personSupplier(){
-    return () -> generate();
+
   }
 
   public Person generate(){
