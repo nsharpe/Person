@@ -76,7 +76,9 @@ public class RandomPersonService {
   }
 
   public LocalDate generateBirthDate(){
-    return LocalDate.now().minus(16l, ChronoUnit.YEARS ).minus(random.nextInt( 365 * 50),ChronoUnit.DAYS);
+    return LocalDate.now()
+            .minus(16l, ChronoUnit.YEARS )
+            .minus(random.nextInt( 365 * 50),ChronoUnit.DAYS);
   }
 
   public String random(List<String> list){
