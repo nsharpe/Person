@@ -169,7 +169,7 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Function<Person,Integer> age(){
-    return x -> LocalDate.now().getYear() - x.getBirthDate().getYear();
+
   }
 
   /**
@@ -179,7 +179,7 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Function<Person,Integer> daysSinceBirth(){
-    return x -> Period.between(x.getBirthDate(),LocalDate.now()).getDays();
+
   }
 
   @Override
