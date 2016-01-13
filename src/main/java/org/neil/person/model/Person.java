@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.function.Function;
@@ -169,6 +170,16 @@ public class Person implements Unique<Long> {
    */
   public static Function<Person,Integer> age(){
     return x -> LocalDate.now().getYear() - x.getBirthDate().getYear();
+  }
+
+  /**
+   * returns a function that returns the number of days since a person was born
+   *
+   *
+   * @return
+   */
+  public static Function<Person,Integer> daysSinceBirth(){
+    return x -> Period.between(x.getBirthDate(),LocalDate.now()).getDays();
   }
 
   @Override
