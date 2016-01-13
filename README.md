@@ -80,6 +80,11 @@ Performing a delete on the previous location will remove it from the date base.
 You can update a person by using a put method.
 
 ## Branches For Demonstrations
+master
+```
+git checkout master
+```
+
 Functional Interfaces
 ```
 git checkout function-interface
@@ -93,4 +98,14 @@ git checkout predicate-interface
 Default Keyword
 ```
 git checkout default-keyword
+```
+
+Supplier interface
+```
+git checkout supplier-function
+```
+
+Stream Interface
+```
+git checkout stream-interface
 ```
