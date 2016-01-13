@@ -20,7 +20,5 @@ public interface Unique<I> {
    * @param <E>
    * @return
    */
-  default <E> Stream<E> matchesId(Stream<E> stream, Function<E,I> function){
-    return stream.filter( x -> getId().equals( function.apply(x) ));
-  }
+  <E> Stream<E> matchesId(Stream<E> stream, Function<E,I> function);
 }
