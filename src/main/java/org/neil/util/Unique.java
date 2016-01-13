@@ -7,6 +7,7 @@ import java.util.stream.Stream;
  * Denotes that a class has a uniqueness constraint.
  *
  */
+@FunctionalInterface
 public interface Unique<I> {
 
   I getId();
