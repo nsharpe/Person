@@ -125,7 +125,7 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Predicate<Person> isOlderThan(final LocalDate localDate){
-    return x -> x.getBirthDate().isBefore(localDate);
+
   }
 
   /**
@@ -136,7 +136,7 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Predicate<Person> isOlderThanOrEqual(final LocalDate localDate){
-    return isOlderThan(localDate).or( x -> x.getBirthDate().isEqual(localDate));
+
   }
 
   /**
@@ -146,7 +146,7 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Predicate<Person> isYoungerThan(final LocalDate localDate){
-    return isOlderThanOrEqual(localDate).negate();
+
   }
 
   /**
@@ -155,11 +155,11 @@ public class Person implements Unique<Long> {
    * @return
    */
   public static Predicate<Person> isAnAdult(){
-    return isOlderThanOrEqual(LocalDate.now().minus(18, ChronoUnit.YEARS));
+
   }
 
   public static Predicate<Person> weighsMoreThan(BigDecimal weightInPounds){
-    return x -> x.getWeightInPounds().compareTo(weightInPounds) > 0;
+
   }
 
   /**
