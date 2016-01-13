@@ -74,18 +74,7 @@ public class PersonService {
   }
 
   public Stream<Person> isAnAdultFilter(Stream<Person> input, Boolean isAnAdult){
-    /**
-     * isAnAdultPredicate.Test(Person) returns true if the person is an adult
-     */
-    Predicate<Person> isAnAdultPredicate = Person.isAnAdult();
 
-    /**
-     * if filtering to find all non adults negate the predicate.
-     */
-    if(!isAnAdult){
-      isAnAdultPredicate = isAnAdultPredicate.negate();
-    }
-    return input.filter(isAnAdultPredicate);
   }
 
   public Stream<Person> findAllFilteredByAdults(Boolean isAnAdult){
