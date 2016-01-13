@@ -19,8 +19,8 @@ import static java.util.stream.Collectors.groupingBy;
 public class PersonStatisticsService {
 
   public Map<Integer,Long> ageDistribution(Stream<Person> personStream){
-    return personStream.map( age() )
-            .collect(groupingBy(x->x,counting()));
+    return personStream.map( Person.age() )
+            .collect(groupingBy( x->x ,counting() ) );
   }
 
   public Map<Person.Gender,Long> genderDistribution(Stream<Person> personStream){
@@ -50,10 +50,6 @@ public class PersonStatisticsService {
 
   public static Function<Person,Integer> daysSinceBirth(){
     return x -> Period.between(x.getBirthDate(),LocalDate.now()).getDays();
-  }
-
-  public static Function<Person,Integer> age(){
-    return x -> LocalDate.now().getYear() - x.getBirthDate().getYear();
   }
 
 }

@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -111,9 +112,13 @@ public class Person implements Unique<Long> {
     MALE,FEMALE
   }
 
-  /**
+  /*
    * This collection of predicates is intended to make operations appear more
    * human readable.
+   */
+
+  /**
+   * Defines a predicate that tests if a person is older then a given date
    *
    * @param localDate
    * @return
@@ -122,20 +127,48 @@ public class Person implements Unique<Long> {
     return x -> x.getBirthDate().isBefore(localDate);
   }
 
+  /**
+   * Defines a predicate that tests if a person is older then or equal to a
+   * given date
+   *
+   * @param localDate
+   * @return
+   */
   public static Predicate<Person> isOlderThanOrEqual(final LocalDate localDate){
     return isOlderThan(localDate).or( x -> x.getBirthDate().isEqual(localDate));
   }
 
+  /**
+   * Defines a predicate that tests if a person is younger then a given date
+   *
+   * @param localDate
+   * @return
+   */
   public static Predicate<Person> isYoungerThan(final LocalDate localDate){
-    return x -> x.getBirthDate().isAfter(localDate);
+    return isOlderThanOrEqual(localDate).negate();
   }
 
+  /**
+   * This predicate tests to see if an individual is an adult
+   *
+   * @return
+   */
   public static Predicate<Person> isAnAdult(){
     return isOlderThanOrEqual(LocalDate.now().minus(18, ChronoUnit.YEARS));
   }
 
   public static Predicate<Person> weighsMoreThan(BigDecimal weightInPounds){
     return x -> x.getWeightInPounds().compareTo(weightInPounds) > 0;
+  }
+
+  /**
+   * Returns a function that takes a person as an input and returns the age of
+   * that person
+   *
+   * @return
+   */
+  public static Function<Person,Integer> age(){
+    return x -> LocalDate.now().getYear() - x.getBirthDate().getYear();
   }
 
   @Override
