@@ -78,3 +78,14 @@ localhost:8008/person/1
 Performing a delete on the previous location will remove it from the date base.
 
 You can update a person by using a put method.
+
+## Branches For Demonstrations
+Functional Interfaces
+```
+git checkout function-interface
+```
+
+Predicate Interface
+```
+git checkout predicate-interface
+```
