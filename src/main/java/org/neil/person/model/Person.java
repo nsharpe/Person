@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -180,6 +181,38 @@ public class Person implements Unique<Long> {
    */
   public static Function<Person,Integer> daysSinceBirth(){
 
+  }
+
+  public static Comparator<Person> sortById(){
+    return (x,y) -> x.getId().compareTo(y.getId());
+  }
+
+  public static Comparator<Person> sortByFirstName(){
+    return (x,y) -> x.getFirstName().compareTo(y.getFirstName());
+  }
+
+  public static Comparator<Person> sortByLasName(){
+    return (x,y) -> x.getLastName().compareTo(y.getLastName());
+  }
+
+  public static Comparator<Person> sortByName(){
+    return sortByLasName()
+            .thenComparing(sortByFirstName())
+            .thenComparing(sortById());
+  }
+
+  public static Comparator<Person> sortBy(String type){
+    switch(type) {
+      case "name":
+        return sortByName();
+      case "firstName":
+        return sortByFirstName().thenComparing(sortById());
+      case "lastName":
+        return sortByLasName().thenComparing(sortById());
+      case "id":
+      default:
+        return sortById();
+    }
   }
 
   @Override

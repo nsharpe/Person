@@ -78,4 +78,80 @@ public class PersonTest {
 
     assertEquals(longContainer,result.get());
   }
+
+  @Test
+  public void testSortByIdLessThan(){
+    Person p1 = new Person();
+    p1.setId(1l);
+
+    Person p2 = new Person();
+    p2.setId(2l);
+
+    assertTrue(Person.sortById().compare(p1,p2) < 0 );
+  }
+
+  @Test
+  public void testSortByIdEquals(){
+    Person p1 = new Person();
+    p1.setId(1l);
+
+    Person p2 = new Person();
+    p2.setId(1l);
+
+    assertTrue(Person.sortById().compare(p1,p2) == 0 );
+  }
+
+  @Test
+  public void testSortByGreaterThan(){
+    Person p1 = new Person();
+    p1.setId(2l);
+
+    Person p2 = new Person();
+    p2.setId(1l);
+
+    assertTrue(Person.sortById().compare(p1,p2) > 0 );
+  }
+
+  @Test
+  public void testSortByNameLastNameDifferent(){
+    Person p1 = new Person();
+    p1.setFirstName("Albert");
+    p1.setLastName("Smith");
+
+    Person p2 = new Person();
+    p2.setFirstName("Mike");
+    p2.setLastName("Blair");
+
+    assertTrue(Person.sortByName().compare(p1,p2) > 0 );
+  }
+
+  @Test
+  public void testSortByNameLastNameSame(){
+    Person p1 = new Person();
+    p1.setId(1l);
+    p1.setFirstName("Albert");
+    p1.setLastName("Smith");
+
+    Person p2 = new Person();
+    p2.setId(1l);
+    p2.setFirstName("Mike");
+    p2.setLastName("Smith");
+
+    assertTrue(Person.sortByName().compare(p1,p2) < 0 );
+  }
+
+  @Test
+  public void testSortByNameNameSame(){
+    Person p1 = new Person();
+    p1.setId(1l);
+    p1.setFirstName("Albert");
+    p1.setLastName("Smith");
+
+    Person p2 = new Person();
+    p2.setId(2l);
+    p2.setFirstName("Albert");
+    p2.setLastName("Smith");
+
+    assertTrue(Person.sortByName().compare(p1,p2) < 0 );
+  }
 }
