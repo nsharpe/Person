@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -59,14 +60,25 @@ public class PersonService {
              personRepository.findAll(ids).spliterator(),false);
   }
 
-  public Person updatePesron(Long id, Person person){
-    Person toReturn = personRepository.findOne(id);
-    if(toReturn==null){
+  public Person updatePerson(Long id, Person person){
+    Person previousState = personRepository.findOne(id);
+    if(previousState==null){
       throw new PersonNotFoundException(id);
     }
-    person.setId(id);
-    personRepository.save(person);
-    return toReturn;
+
+    Optional.ofNullable(person.getFirstName())
+            .ifPresent(x -> previousState.setFirstName(x) );
+    Optional.ofNullable( person.getBirthDate() )
+            .ifPresent(x -> previousState.setBirthDate(x));
+    Optional.ofNullable( person.getGender() )
+            .ifPresent( x -> previousState.setGender(x) );
+    Optional.ofNullable( person.getHeight() )
+            .ifPresent( x -> previousState.setHeight(x) );
+    Optional.ofNullable( person.getWeightInPounds() )
+            .ifPresent( x -> previousState.setWeightInPounds(x) );
+
+    personRepository.save(previousState);
+    return previousState;
   }
 
   public void delete(Long id){

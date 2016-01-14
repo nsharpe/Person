@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class PersonController {
 
   @RequestMapping(value="/{id}",method = RequestMethod.PUT,consumes="application/json")
   public Person updatePerson(@RequestBody Person p, @PathVariable Long id){
-    return personService.updatePesron(id,p);
+    return personService.updatePerson(id,p);
   }
 
   @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
@@ -76,8 +77,27 @@ public class PersonController {
   }
 
   @RequestMapping(method = RequestMethod.GET,params = "isAdult")
-  public List<Person> adultFilter(@RequestParam("isAdult") Boolean isAdult){
+  public List<Person> adultFilter(@RequestParam("isAdult") Boolean isAdult,
+                                  @RequestParam(required = false,defaultValue = "id", name = "sort") String sortType,
+                                  @RequestParam(required = false,defaultValue = "false", name = "descending")Boolean descending){
+    Comparator<Person> sort = Person.sortBy(sortType);
+    if(descending){
+      sort = sort.reversed();
+    }
     return personService.findAllFilteredByAdults(isAdult)
+            .sorted( sort )
+            .collect(Collectors.toList());
+  }
+
+  @RequestMapping( method = RequestMethod.GET)
+  public List<Person> getAll(@RequestParam(required = false,defaultValue = "id", name = "sort") String sortType,
+                             @RequestParam(required = false,defaultValue = "false", name = "descending")Boolean descending) {
+    Comparator<Person> sort = Person.sortBy(sortType);
+    if(descending){
+      sort = sort.reversed();
+    }
+    return personService.findAll()
+            .sorted(sort)
             .collect(Collectors.toList());
   }
 
