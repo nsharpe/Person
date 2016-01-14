@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -69,7 +68,7 @@ public class PersonController {
 
   @RequestMapping(value="/{id}",method = RequestMethod.PUT,consumes="application/json")
   public Person updatePerson(@RequestBody Person p, @PathVariable Long id){
-    return personService.updatePesron(id,p);
+    return personService.updatePerson(id,p);
   }
 
   @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
