@@ -109,3 +109,8 @@ Stream Interface
 ```
 git checkout stream-interface
 ```
+
+Data aggregation 
+```
+git checkout data-agregation
+```
