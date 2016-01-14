@@ -21,11 +21,11 @@ for pkg in $TAP_LIST; do
 done
 
 BREW_LIST="brew-cask
+mvn
 "
 CASK_LIST="virtualbox
 vagrant
 vagrant-manager
-google-chrome
 "
 
 # Install tools that will not require cask
