@@ -5,9 +5,6 @@ Vagrant.configure(2) do |config|
   # Set the ip address
   config.vm.network "private_network", ip: "192.168.60.2"
 
-  # Sync maven folder
-  config.vm.synced_folder "~/.m2", "/home/vagrant/.m2"
-
   # Run mysql init once
   config.vm.provision "shell",path: "vagrant/mysql/install.sh", privileged: true
   
