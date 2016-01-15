@@ -3,12 +3,26 @@
 ## Introduction
 This project is intended to be used as an example for many of the new features in JAVA 8 in conjuncture with vagrant and spring boot.
 
+Each demonstration will have an associated [branch](https://github.com/nsharpe/Person#branches-for-demonstrations) that will have some code removed.  The code that is removed will have unit tests associated with it.
+
+The goal is to be able to get as many unit tests to pass as you can.
+
 ## Requirements
 In order to run the project on your local machine you will need the following installed on your machine.
 * Java 8
 * Maven
 * Gradle
 * Vagrant
+
+If you do not have these installed and you are using a mac, you can use [brew](http://brew.sh/) to install all the required packages
+
+You can also run the following in terminal to install homebrew, vagrant, virtual box, vagrant-manager, and maven
+
+BEFORE RUNNING PLEASE REVIEW THE SCRIPT.  Generally you do not want to do a curl a bash script unless you trust the source.
+
+```
+curl https://raw.githubusercontent.com/nsharpe/Person/master/brew_install.sh | bash
+```
 
 ## Running the application
 To run the application run the following in your command line
