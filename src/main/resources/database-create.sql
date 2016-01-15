@@ -1,3 +1,4 @@
+drop database IF EXISTS person;
 create database IF NOT EXISTS person;
 
 use person;
