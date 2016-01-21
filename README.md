@@ -14,9 +14,9 @@ In order to run the project on your local machine you will need the following in
 * Gradle
 * Vagrant
 
-If you do not have these installed and you are using a mac, you can use [brew](http://brew.sh/) to install all the required packages
+If you do not have vagrant or virtual box installed and you are using a mac, you can use [brew](http://brew.sh/) to install all the required packages
 
-You can also run the following in terminal to install homebrew, vagrant, virtual box, vagrant-manager, and maven
+You can also run the following in terminal to install homebrew, vagrant, virtual box, vagrant-manager
 
 BEFORE RUNNING PLEASE REVIEW THE SCRIPT.  Generally you do not want to do a curl a bash script unless you trust the source.
 
