@@ -10,7 +10,6 @@ The goal is to be able to get as many unit tests to pass as you can.
 ## Requirements
 In order to run the project on your local machine you will need the following installed on your machine.
 * Java 8
-* Maven
 * Gradle
 * Vagrant
 
