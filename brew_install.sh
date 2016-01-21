@@ -21,7 +21,6 @@ for pkg in $TAP_LIST; do
 done
 
 BREW_LIST="brew-cask
-maven
 "
 CASK_LIST="virtualbox
 vagrant
