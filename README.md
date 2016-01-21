@@ -17,7 +17,7 @@ If you do not have vagrant or virtual box installed and you are using a mac, you
 
 You can also run the following in terminal to install homebrew, vagrant, virtual box, vagrant-manager
 
-BEFORE RUNNING PLEASE REVIEW THE SCRIPT.  Generally you do not want to do a curl a bash script unless you trust the source.
+BEFORE RUNNING PLEASE REVIEW THE SCRIPT.  Generally you do not want to curl a bash script unless you trust the source.
 
 ```
 curl https://raw.githubusercontent.com/nsharpe/Person/master/brew_install.sh | bash
